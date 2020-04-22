@@ -15,7 +15,7 @@ def dowanload(args):
     urlretrieve(url, os.path.join(datapath, 'test' + current_page_index, url.split("/")[-1]))
     # print("%s Downloaded" % url.split("/")[-1])
 
-pool = mp.Pool(4)
+pool = mp.Pool()
 html = urlopen(starturl).read().decode('utf-8')
 soup = BeautifulSoup(html, features='lxml')
 
