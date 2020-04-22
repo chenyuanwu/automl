@@ -6,13 +6,13 @@ import os
 
 # starturl = "https://pantheon.stanford.edu/measurements/node/?node=any&direction=any&link=any&scenario=any&year=any&month=any&page=1"
 starturl = "https://pantheon.stanford.edu/measurements/node/"
-datapath = "/Users/wuchenyuan/Downloads"
+datapath = "/home/chenyunw/automl/node2cloud"
 baseurl = "https://pantheon.stanford.edu/measurements/node/"
 
 html = urlopen(starturl).read().decode('utf-8')
 soup = BeautifulSoup(html, features='lxml')
 
-for i in range(2):
+for i in range(50000):
     current_page_item = soup.find_all('li', attrs={"class":"page-item active"})[0]
     current_page_index = re.findall(r'[0-9]+', current_page_item.a.get_text())[0]
     os.mkdir(os.path.join(datapath, 'test' + current_page_index))
