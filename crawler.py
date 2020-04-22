@@ -5,9 +5,9 @@ import re
 import os
 
 # starturl = "https://pantheon.stanford.edu/measurements/node/?node=any&direction=any&link=any&scenario=any&year=any&month=any&page=1"
-starturl = "https://pantheon.stanford.edu/measurements/node/"
-datapath = "/home/chenyunw/automl/node2cloud"
-baseurl = "https://pantheon.stanford.edu/measurements/node/"
+starturl = "https://pantheon.stanford.edu/measurements/cloud/"
+datapath = "/home/chenyunw/automl/cloud2cloud"
+baseurl = "https://pantheon.stanford.edu/measurements/cloud/"
 
 html = urlopen(starturl).read().decode('utf-8')
 soup = BeautifulSoup(html, features='lxml')
