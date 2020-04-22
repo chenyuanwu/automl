@@ -19,7 +19,7 @@ pool = mp.Pool(4)
 html = urlopen(starturl).read().decode('utf-8')
 soup = BeautifulSoup(html, features='lxml')
 
-for i in range(2):
+for i in range(4):
     current_page_item = soup.find_all('li', attrs={"class":"page-item active"})[0]
     current_page_index = re.findall(r'[0-9]+', current_page_item.a.get_text())[0]
     os.mkdir(os.path.join(datapath, 'test' + current_page_index))
