@@ -4,6 +4,7 @@ from urllib.request import urlretrieve
 import re
 import os
 import multiprocessing as mp
+import time
 
 # starturl = "https://pantheon.stanford.edu/measurements/node/?node=any&direction=any&link=any&scenario=any&year=any&month=any&page=1"
 starturl = "https://pantheon.stanford.edu/measurements/node/"
@@ -26,7 +27,10 @@ for i in range(2):
     download_names = ["Full report", "Performance data", "Raw logs", "Raw logs with UIDs"]
     download_tags = soup.find_all('a', text=download_names)
     for t in download_tags:
+        time_start = time.time()
         urlretrieve(t['href'], os.path.join(datapath, 'test' + current_page_index, t['href'].split("/")[-1]))
+        time_end = time.time()
+        print("%s Downloaded in %.2f" % (t['href'].split("/")[-1], time_end - time_start))
         # pool.apply_async(dowanload, args=((t['href'], current_page_index),))
     # pool.close()
     # pool.join()
