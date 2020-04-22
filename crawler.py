@@ -13,7 +13,7 @@ baseurl = "https://pantheon.stanford.edu/measurements/node/"
 def dowanload(args):
     url, current_page_index = args
     urlretrieve(url, os.path.join(datapath, 'test' + current_page_index, url.split("/")[-1]))
-    print("%s Downloaded" % url.split("/")[-1])
+    # print("%s Downloaded" % url.split("/")[-1])
 
 pool = mp.Pool(4)
 html = urlopen(starturl).read().decode('utf-8')
