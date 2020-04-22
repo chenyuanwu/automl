@@ -15,7 +15,7 @@ def dowanload(args):
     urlretrieve(url, os.path.join(datapath, 'test' + current_page_index, url.split("/")[-1]))
     # print("%s Downloaded" % url.split("/")[-1])
 
-pool = mp.Pool()
+pool = mp.Pool(4)
 html = urlopen(starturl).read().decode('utf-8')
 soup = BeautifulSoup(html, features='lxml')
 
@@ -28,6 +28,8 @@ for i in range(4):
     for t in download_tags:
         # urlretrieve(t['href'], os.path.join(datapath, 'test' + current_page_index, t['href'].split("/")[-1]))
         pool.apply_async(dowanload, args=((t['href'], current_page_index),))
+    pool.close()
+    pool.join()
     print("Crawled the %s page" % current_page_index)
 
     next_tag = soup.find_all('a', attrs={"aria-label": "Next"})[0]
